@@ -1,0 +1,29 @@
+"""Beautiful Soup object"""
+
+
+soup = BeautifulSoup('<link rel="sudo-modal" href="/sessions/sudo_modal">','html.parser')
+
+type(soup)
+Out[84]: bs4.BeautifulSoup
+
+"""beautiful soup Tag Object"""
+soup.link
+Out[85]: <link href="/sessions/sudo_modal" rel="sudo-modal"/>
+
+type(soup.link)
+Out[86]: bs4.element.Tag
+
+"""Tag object name feature"""
+soup.link.name
+Out[87]: 'link'
+
+"""accessing the attribute 'rel' of the Tag object"""
+soup.link['rel']
+Out[88]: ['sudo-modal']
+
+"""accessing the entire Tag object dictionary"""
+soup.link.attrs
+Out[89]: {'href': '/sessions/sudo_modal', 'rel': ['sudo-modal']}
+
+soup.link['href']
+Out[90]: '/sessions/sudo_modal'
