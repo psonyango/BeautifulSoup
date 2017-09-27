@@ -1,0 +1,19 @@
+import requests
+#import pandas as pd
+#from pandas import DataFrame
+from bs4 import BeautifulSoup as bs
+#import csv
+
+res = requests.get("http://www.yellowpageskenya.com/site/index?SearchForm%5Bwhat%5D=restaurants")
+soup = bs(res.content,"html.parser")
+restaurants = soup.find_all(class_="listing__content__wrap")
+
+filename = "restaurants.csv"
+f = open(filename, 'w')
+headers = "Restaurant Name, Address \n"
+f.write(headers)
+for rest in restaurants:
+    restaurant = rest.a['title']
+    address = rest.span.string
+    f.write(restaurant +","+ address + "\n")
+f.close()
