@@ -1,0 +1,18 @@
+import requests
+
+from bs4 import BeautifulSoup
+
+res = requests.get('https://en.wikipedia.org/wiki/Kenya')
+
+res.status_code
+
+soup = BeautifulSoup(res.content,"html.parser")
+
+tableYote = soup.find("table",class_="wikitable")
+
+headers = [th.getText() for th in tableYote.find_all('th')]
+
+cities = [cities.text for cities in tableYote.find_all('td',align='left')]
+
+counties = [counties.text for counties in tableYote.find_all('span',style="font-size:90%;")]
+
